@@ -1,9 +1,10 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-//import exceptions.NoIngress;
+import exceptions.DocTypeException;
+import exceptions.ProblemDayException;
+
 
 public class Market {
 	
@@ -15,38 +16,34 @@ public class Market {
 		persons = new ArrayList<>();		
 	}
 	
-	public boolean addPerson(String identification, String type) throws NoIngress{
+	public boolean addPerson(String identification, String type,int day) throws DocTypeException, ProblemDayException {
 		count++;
 		boolean out = false;
 		
-		int day = LocalDate.now().getDayOfMonth();
 		System.out.println("Dia del mes es:"+day);
 		int penultima = identification.length()-2;
 		System.out.println("penultima es: "+identification.charAt(penultima));
 		int id = Integer.parseInt(String.valueOf(identification.charAt(penultima)));
 		System.out.println("este es: "+id);
 		if(!type.equals("TI")) {
-		if((day%2 == 0) && id%2 != 0) {
+			if((day%2 == 0) && (id%2 != 0) || (day%2 != 0) && (id%2 == 0)) {
 			persons.add(new Person(identification,type));
 			System.out.println("Esta hecho Bro :)");
 			out = true;
-		}else if((day%2 != 0) && (id%2 == 0)){
-			persons.add(new Person(identification,type));
-			System.out.println("Esta hecho Bro :)");
-			out = true;
+			}else {
+				System.out.println("Hoy no te toca");
+				throw new ProblemDayException(day);
+			}	
 		}else {
-			System.out.println("F mi perro");
-			//throw new NoIngress(type,id);
-		}		
-		}else {
-			 //throw new MaximumCapacityException(MAX_CAP,getTotalWeight()+we);
 			System.out.println("Usted es un menor rey");
+			throw new DocTypeException(type);
 
-			//throw new NoIngress(type,id);
-		}
+					}
 		
 		return out;
 	}
+	
+	
 	
 	public int getCount() {
 		return count;

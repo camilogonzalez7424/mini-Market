@@ -1,6 +1,6 @@
 package model;
 
-public enum typeDocument {
+public enum DocumentType {
 	TI,
 	CC,
 	PP,

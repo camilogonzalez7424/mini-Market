@@ -7,18 +7,18 @@ public class Person {
 	
 	//Relationship.
 	
-	private typeDocument type;
+	private DocumentType type;
 
 	public Person(String identification, String type) {
 		this.identification = identification;
-		this.type = typeDocument.valueOf(type);
+		this.type = DocumentType.valueOf(type);
 	}
 
 	public String getIdentification() {
 		return identification;
 	}
 
-	public typeDocument getType() {
+	public DocumentType getType() {
 		return type;
 	}
 

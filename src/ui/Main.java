@@ -1,6 +1,9 @@
 package ui;
+import java.time.LocalDate;
 import java.util.Scanner;
 
+import exceptions.DocTypeException;
+import exceptions.ProblemDayException;
 import model.Market;
 
 public class Main {
@@ -71,10 +74,10 @@ public class Main {
 		
 		System.out.println("Seleccione el número que respresenta el tipo de documento\n"+
 				"*******************Document******************** \n"+
-				"(1) Si es TI-\"Tarjeta de Identidad.\"\n"+
-				"(2) Si es CC-\"Cedula de Ciudadania.\"\n"+
-				"(3) Si es PP-\"Pasaporte.\"\n"+
-				"(4) Si es CE-\"Cedula de Extranjeria.\"\n");
+				"(1) Si es TI - \"Tarjeta de Identidad.\"\n"+
+				"(2) Si es CC - \"Cedula de Ciudadania.\"\n"+
+				"(3) Si es PP - \"Pasaporte.\"\n"+
+				"(4) Si es CE - \"Cedula de Extranjeria.\"\n");
 		
 			selection=sc.nextInt();
 			
@@ -105,13 +108,19 @@ public class Main {
 		sc.nextLine(); //Limpiar el Buffer
 		
 		identification = sc.nextLine();
-		
-		miniMarket.addPerson(identification,type);
-		}catch(NoIngress mce) {
-			System.out.println("La persona no puede ingresar.");
-		      System.out.println("El tipo de identificación es: "+mce.getType()+" y penultimo dijito de su documento es: "+mce.getId());
-		      mce.printStackTrace();
-		}	
+
+		int day = LocalDate.now().getDayOfMonth();
+
+		miniMarket.addPerson(identification, type, day);
+		}catch(DocTypeException dte) {
+			System.out.println("La persona no puede ser menor de edad para poder ingresar,posee("+dte.getType()+")");
+		    System.err.println(dte.getMessage());
+		    dte.printStackTrace();
+		}catch(ProblemDayException pde) {
+			System.out.println("La persona no puede puede ingresar el dia de hoy("+pde.getDay()+")");
+		    System.err.println(pde.getMessage());
+		    pde.printStackTrace();
+		}
 	}
 
 }
