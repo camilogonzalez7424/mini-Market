@@ -7,8 +7,8 @@ import exceptions.ProblemDayException;
 import model.Market;
 
 public class Main {
-    Scanner sc;
-    Market miniMarket;
+    private Scanner sc;
+    private Market miniMarket;
 	
 	Main(){
         sc = new Scanner(System.in);
@@ -18,7 +18,7 @@ public class Main {
     
 	public static void main(String[] args) {
 		
-		System.out.println("Welcome to the aplication");
+		System.out.println("Bienvenido a Mi Barrio Te Quiere");
 		Main ppal= new Main();
 		
 		int option=0;
@@ -35,10 +35,10 @@ public class Main {
 		int option=0;
 
 		System.out.println(
-				"Main menu, please pick an option\n" +
-				"(1) Registration \n" +
-				"(2) Consult \n"+ 
-				"(0) To leave the application"
+				"Menú principal, por favor elija una opcion:\n" +
+				"(1) Registrarse \n" +
+				"(2) Consultar \n"+ 
+				"(0) Salir"
 				);
 		option= sc.nextInt();
 		sc.nextLine();
@@ -56,7 +56,7 @@ public class Main {
 			System.out.println(miniMarket.toString());
 			break;
 		case 2:
-			System.out.println(miniMarket.getCount());
+			System.out.println("La cantidad de personas que han intentado ingresar es: "+miniMarket.getCounter());
 			break;
 		default:
 			System.out.println("Error, wrong option");
@@ -72,8 +72,8 @@ public class Main {
 		String identification = "";
 		String type = "";
 		
-		System.out.println("Seleccione el número que respresenta el tipo de documento\n"+
-				"*******************Document******************** \n"+
+		System.out.println("Seleccione el número que respresenta el tipo de documento:\n"+
+				"*******************Documento**************************** \n"+
 				"(1) Si es TI - \"Tarjeta de Identidad.\"\n"+
 				"(2) Si es CC - \"Cedula de Ciudadania.\"\n"+
 				"(3) Si es PP - \"Pasaporte.\"\n"+

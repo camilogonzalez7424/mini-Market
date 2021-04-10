@@ -4,7 +4,7 @@ public class DocTypeException extends Exception {
 	private String type;
 	
 	public DocTypeException(String type) {
-		super("The maximum capacity has been exceeded CAMBIAR.");
+		super("Documento de identidad incorrecto.");
 		this.type = type;
 	}
 

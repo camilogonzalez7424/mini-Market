@@ -4,7 +4,7 @@ public class ProblemDayException extends Exception{
 	private int day;
 	
 	public ProblemDayException(int day) {
-		super("DIAAAAAAAAAAA MALO CAMBIAR.");
+		super("Dia incorrecto para ingresar según la ley vigente.");
 		this.day = day;
 	}
 	
